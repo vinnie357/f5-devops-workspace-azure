@@ -54,12 +54,6 @@ resource "azurerm_virtual_machine" "workstation" {
     network_interface_ids = [azurerm_network_interface.workspace-mgmt-nic.id]
     vm_size               = var.instanceType
 
-    ssh_keys {
-        #NOTE: Due to a limitation in the Azure VM Agent the only allowed path is /home/{username}/.ssh/authorized_keys.
-        path  = "/home/${var.adminAccountName}/.ssh/authorized_keys"
-        key_data = var.sshPublicKey
-    }
-
     storage_os_disk {
         name              = "workspaceOsDisk"
         caching           = "ReadWrite"
@@ -85,6 +79,11 @@ resource "azurerm_virtual_machine" "workstation" {
 
     os_profile_linux_config {
         disable_password_authentication = false
+        ssh_keys {
+            #NOTE: Due to a limitation in the Azure VM Agent the only allowed path is /home/{username}/.ssh/authorized_keys.
+            path  = "/home/${var.adminAccountName}/.ssh/authorized_keys"
+            key_data = var.sshPublicKey
+       }
     }
 
   tags = {
