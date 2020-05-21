@@ -40,7 +40,7 @@ resource "azurerm_virtual_machine" "workstation" {
     resource_group_name          = azurerm_resource_group.main.name
     
     network_interface_ids = [azurerm_network_interface.workspace-mgmt-nic.id]
-    vm_size               = var.instance_type
+    vm_size               = var.instanceType
 
     admin_ssh_key {
         username   = var.adminAccountName

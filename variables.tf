@@ -11,7 +11,7 @@ variable sshPublicKey { description = "contents of admin ssh public key" }
 variable adminSourceAddress { description = "admin source address 100.100.100.10/32" }
 
 # workspace
-variable instanceType { default = "Standard_DS1_v2"}
+variable instanceType { default = "Standard_DS1_v2" }
 variable diskType { default = "Premium_LRS"}
 variable workspaceIp { default = "10.90.1.99" }
 variable onboardScript { description = "URL to userdata onboard script"}
