@@ -20,6 +20,10 @@ resource "azurerm_public_ip" "workspace" {
     Name = "${var.projectPrefix}-workspace-public-ip"
   }
 }
+data "azurerm_public_ip" "workspace" {
+  name                = azurerm_public_ip.workspace.id
+  resource_group_name = azurerm_resource_group.main.name
+}
 
 # linuxbox
 resource "azurerm_network_interface" "workspace-mgmt-nic" {
