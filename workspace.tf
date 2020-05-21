@@ -95,3 +95,30 @@ resource "azurerm_virtual_machine" "workstation" {
     application    = var.application
   }
 }
+
+# Run Startup Script
+resource "azurerm_virtual_machine_extension" "workspace-run-startup-cmd" {
+  name                 = "${var.projectPrefix}-workspace-run-startup-cmd${var.buildSuffix}"
+  depends_on           = ["azurerm_virtual_machine.workspace"]
+  location             = var.region
+  resource_group_name  = azurerm_resource_group.main.name
+  virtual_machine_name = azurerm_virtual_machine.workspace.name
+  publisher            = "Microsoft.Azure.Extensions"
+  type                 = "CustomScript"
+  type_handler_version = "2.0"
+
+  settings = <<SETTINGS
+    {
+        "commandToExecute": "bash /var/lib/waagent/CustomData"
+    }
+  SETTINGS
+
+  tags = {
+    Name           = "${var.environment}-workspace-startup-cmd"
+    environment    = var.environment
+    owner          = var.owner
+    group          = var.group
+    costcenter     = var.costcenter
+    application    = var.application
+  }
+}
