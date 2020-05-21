@@ -21,7 +21,7 @@ resource "azurerm_public_ip" "workspace" {
   }
 }
 data "azurerm_public_ip" "workspace" {
-  name                = azurerm_public_ip.workspace.id
+  name                = azurerm_public_ip.workspace.name
   resource_group_name = azurerm_resource_group.main.name
 }
 
