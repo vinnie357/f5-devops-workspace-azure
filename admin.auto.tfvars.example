@@ -1,0 +1,38 @@
+## Azure Environment
+# prefix for all items created
+projectPrefix="workspace"
+# location
+location=""
+# region
+region=""
+
+## admin
+# admin source address
+adminSrcAddr=["192.168.100.100/32","192.168.100.101/32"]
+# admin account name
+adminAccountName="zadmin"
+# public key for instance ssh access
+sshPublicKey="ssh-rsa AAAA....=="
+
+## workspace
+# instance type
+instanceType="Standard_DS1_v2"
+# disk type
+diskType="Premium_LRS"
+# workspace static internal address
+workspaceIp="10.90.1.99"
+# URL to userdata onboard script
+onboardScript="https://raw.githubusercontent.com/vinnie357/workspace-onboard-bash-templates/master/terrarform/azure/sca/onboard.sh"
+# comma seperated list of git repositories to clone
+repositories="https://github.com/vinnie357/terraform-azure-bigiq.git,https://github.com/DumpySquare/vscode-f5-fast.git"
+
+## network
+# main network cidr
+cidr="10.90.0.0/16"
+## tags
+purpose="public"
+environment="dev"
+owner="dev"
+group="dev"
+costcenter="dev"
+application="workspace"
