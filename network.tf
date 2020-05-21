@@ -1,6 +1,6 @@
 # Create a Virtual Network within the Resource Group
 resource "azurerm_virtual_network" "main" {
-  name                = "${var.projectPrefix}-network"
+  name                = "${var.projectPrefix}-network-${random_pet.buildSuffix.id}"
   address_space       = [var.cidr]
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
@@ -8,7 +8,7 @@ resource "azurerm_virtual_network" "main" {
 
 # Create the Management Subnet within the Virtual Network
 resource "azurerm_subnet" "mgmt" {
-  name                 = "mgmt"
+  name                 = "${var.projectPrefix}-mgmt-${random_pet.buildSuffix.id}"
   virtual_network_name = azurerm_virtual_network.main.name
   resource_group_name  = azurerm_resource_group.main.name
   address_prefix       = var.subnets["subnet1"]

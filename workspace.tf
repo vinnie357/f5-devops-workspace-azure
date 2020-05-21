@@ -11,19 +11,19 @@ data "template_file" "onboard" {
 }
 # Create a Public IP for the Virtual Machines
 resource "azurerm_public_ip" "workspace" {
-  name                = "${var.prefix}workspace-mgmt-pip${var.buildSuffix}"
+  name                = "${var.projectPrefix}workspace-mgmt-pip-${random_pet.buildSuffix.id}"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   allocation_method   = "Dynamic"
 
   tags = {
-    Name = "${var.prefix}-workspace-public-ip"
+    Name = "${var.projectPrefix}-workspace-public-ip"
   }
 }
 
 # linuxbox
 resource "azurerm_network_interface" "workspace-mgmt-nic" {
-  name                = "${var.projectPrefix}-workspace-mgmt-nic"
+  name                = "${var.projectPrefix}-workspace-mgmt-nic-${random_pet.buildSuffix.id}"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   network_security_group_id = azurerm_network_security_group.main.id
@@ -47,7 +47,7 @@ resource "azurerm_network_interface" "workspace-mgmt-nic" {
   }
 }
 resource "azurerm_virtual_machine" "workstation" {
-    name                  = "workstation"
+    name                  = "${var.projectPrefix}-workstation-${random_pet.buildSuffix.id}"
     location                     = azurerm_resource_group.main.location
     resource_group_name          = azurerm_resource_group.main.name
     

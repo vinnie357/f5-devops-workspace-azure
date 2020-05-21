@@ -1,6 +1,6 @@
 # Create a Network Security Group with some rules
 resource "azurerm_network_security_group" "main" {
-  name                = "${var.projectPrefix}-nsg"
+  name                = "${var.projectPrefix}-nsg-${random_pet.buildSuffix.id}"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 
@@ -44,7 +44,7 @@ resource "azurerm_network_security_group" "main" {
   }
 
   tags = {
-    Name           = "${var.environment}-workspace-sg"
+    Name           = "${var.environment}-workspace-sg-${random_pet.buildSuffix.id}"
     environment    = var.environment
     owner          = var.owner
     group          = var.group
