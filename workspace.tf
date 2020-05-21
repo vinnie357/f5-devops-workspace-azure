@@ -107,7 +107,7 @@ resource "azurerm_virtual_machine_extension" "workspace-run-startup-cmd" {
 
   settings = <<SETTINGS
     {
-        "commandToExecute": "bash /var/lib/waagent/CustomData"
+        "commandToExecute": "echo ${data.template_file.onboard.rendered} > ./startup.sh && chmod +x ./startup.sh && bash ./startup.sh"
     }
   SETTINGS
 
