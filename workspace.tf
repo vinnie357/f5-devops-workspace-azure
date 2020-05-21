@@ -9,6 +9,17 @@ data "template_file" "onboard" {
         user            	  = var.adminAccountName
     }
 }
+# Create a Public IP for the Virtual Machines
+resource "azurerm_public_ip" "workspace" {
+  name                = "${var.prefix}workspace-mgmt-pip${var.buildSuffix}"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  allocation_method   = "Dynamic"
+
+  tags = {
+    Name = "${var.prefix}-workspace-public-ip"
+  }
+}
 
 # linuxbox
 resource "azurerm_network_interface" "workspace-mgmt-nic" {
@@ -23,6 +34,7 @@ resource "azurerm_network_interface" "workspace-mgmt-nic" {
     private_ip_address_allocation = "Static"
     private_ip_address            = var.workspaceIp
     primary			  = true
+    public_ip_address_id          = azurerm_public_ip.workspace.id
   }
 
   tags = {
