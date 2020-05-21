@@ -108,7 +108,7 @@ resource "azurerm_virtual_machine_extension" "workspace-run-startup-cmd" {
 
   settings = <<SETTINGS
     {
-        "commandToExecute": "echo '${base64encode(data.template_file.onboard.rendered)}' > ./startup.sh && cat ./startup.sh | base64 -d > ./startup.sh && chmod +x ./startup.sh && bash ./startup.sh"
+        "commandToExecute": "echo '${base64encode(data.template_file.onboard.rendered)}' >> ./startup.sh && cat ./startup.sh | base64 -d >> ./startup-script.sh && chmod +x ./startup-script.sh && rm ./startup.sh && bash ./startup-script.sh"
         
     }
   SETTINGS
