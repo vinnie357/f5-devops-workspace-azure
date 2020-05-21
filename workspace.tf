@@ -94,7 +94,6 @@ resource "azurerm_virtual_machine" "workspace" {
   }
 }
 
-local 
 # "commandToExecute": "[concat('curl -o ./custom-script.sh, ' && chmod +x ./custom-script.sh && ./custom-script.sh')]"
 # Run Startup Script
 resource "azurerm_virtual_machine_extension" "workspace-run-startup-cmd" {
