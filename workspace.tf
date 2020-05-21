@@ -47,16 +47,17 @@ resource "azurerm_network_interface" "workspace-mgmt-nic" {
   }
 }
 resource "azurerm_virtual_machine" "workstation" {
-    name                  = "${var.projectPrefix}-workstation-${random_pet.buildSuffix.id}"
+    name                         = "${var.projectPrefix}workstation-${random_pet.buildSuffix.id}"
     location                     = azurerm_resource_group.main.location
     resource_group_name          = azurerm_resource_group.main.name
     
     network_interface_ids = [azurerm_network_interface.workspace-mgmt-nic.id]
     vm_size               = var.instanceType
 
-    admin_ssh_key {
-        username   = var.adminAccountName
-        public_key = var.sshPublicKey
+    ssh_keys {
+        #NOTE: Due to a limitation in the Azure VM Agent the only allowed path is /home/{username}/.ssh/authorized_keys.
+        path  = "/home/${var.adminAccountName}/.ssh/authorized_keys"
+        key_data = var.sshPublicKey
     }
 
     storage_os_disk {
