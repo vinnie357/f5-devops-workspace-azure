@@ -1,4 +1,9 @@
 ## OUTPUTS ###
+data "azurerm_public_ip" "workspace" {
+  name                = azurerm_public_ip.workspace.name
+  resource_group_name = azurerm_resource_group.main.name
+  depends_on          = ["azurerm_public_ip.workspace"]
+}
 
 output "sg_id" { value = azurerm_network_security_group.main.id }
 output "sg_name" { value = azurerm_network_security_group.main.name }
