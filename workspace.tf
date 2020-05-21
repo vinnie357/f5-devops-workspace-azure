@@ -93,7 +93,7 @@ resource "azurerm_virtual_machine" "workspace" {
     application    = var.application
   }
 }
-
+# https://staffordwilliams.com/blog/2019/04/14/executing-custom-scripts-during-arm-template-vm-deployment/
 # "commandToExecute": "[concat('curl -o ./custom-script.sh, ' && chmod +x ./custom-script.sh && ./custom-script.sh')]"
 # Run Startup Script
 resource "azurerm_virtual_machine_extension" "workspace-run-startup-cmd" {
@@ -108,7 +108,7 @@ resource "azurerm_virtual_machine_extension" "workspace-run-startup-cmd" {
 
   settings = <<SETTINGS
     {
-        "commandToExecute": "cat '${base64encode(data.template_file.onboard.rendered)}' > ./startup.sh && cat ./startup.sh | base64 -d > ./startup.sh && chmod +x ./startup.sh && bash ./startup.sh"
+        "commandToExecute": "echo '${base64encode(data.template_file.onboard.rendered)}' > ./startup.sh && cat ./startup.sh | base64 -d > ./startup.sh && chmod +x ./startup.sh && bash ./startup.sh"
         
     }
   SETTINGS
