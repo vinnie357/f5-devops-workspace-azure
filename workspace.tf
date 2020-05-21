@@ -46,8 +46,8 @@ resource "azurerm_network_interface" "workspace-mgmt-nic" {
     application    = "workstation"
   }
 }
-resource "azurerm_virtual_machine" "workstation" {
-    name                         = "${var.projectPrefix}workstation-${random_pet.buildSuffix.id}"
+resource "azurerm_virtual_machine" "workspace" {
+    name                         = "${var.projectPrefix}-workspace-${random_pet.buildSuffix.id}"
     location                     = azurerm_resource_group.main.location
     resource_group_name          = azurerm_resource_group.main.name
     
@@ -87,7 +87,7 @@ resource "azurerm_virtual_machine" "workstation" {
     }
 
   tags = {
-    Name           = "${var.environment}-workstation"
+    Name           = "${var.environment}-workspace"
     environment    = var.environment
     owner          = var.owner
     group          = var.group
