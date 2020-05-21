@@ -99,7 +99,7 @@ resource "azurerm_virtual_machine" "workspace" {
 # Run Startup Script
 resource "azurerm_virtual_machine_extension" "workspace-run-startup-cmd" {
   name                 = "${var.projectPrefix}-workspace-run-startup-cmd${random_pet.buildSuffix.id}"
-  depends_on           = ["azurerm_virtual_machine.workspace"]
+  depends_on           = [azurerm_virtual_machine.workspace]
   location             = var.region
   resource_group_name  = azurerm_resource_group.main.name
   virtual_machine_name = azurerm_virtual_machine.workspace.name
