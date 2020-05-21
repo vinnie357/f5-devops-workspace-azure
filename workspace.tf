@@ -43,7 +43,7 @@ resource "azurerm_network_interface" "workspace-mgmt-nic" {
     owner          = var.owner
     group          = var.group
     costcenter     = var.costcenter
-    application    = "workstation"
+    application    = "workspace"
   }
 }
 resource "azurerm_virtual_machine" "workspace" {
@@ -69,7 +69,7 @@ resource "azurerm_virtual_machine" "workspace" {
     }
 
     os_profile {
-        computer_name  = "workstation"
+        computer_name  = "workspace"
         admin_username = var.adminAccountName
         admin_password = var.adminPassword == "" ? random_password.password.result : var.adminPassword
         custom_data = <<-EOF
