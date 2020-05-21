@@ -72,9 +72,7 @@ resource "azurerm_virtual_machine" "workspace" {
         computer_name  = "workspace"
         admin_username = var.adminAccountName
         admin_password = var.adminPassword == "" ? random_password.password.result : var.adminPassword
-        custom_data = <<-EOF
-                data.templatefile.onboard.rendered
-              EOF
+        custom_data = data.templatefile.onboard.rendered
     }
 
     os_profile_linux_config {
