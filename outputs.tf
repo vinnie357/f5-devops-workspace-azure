@@ -2,7 +2,7 @@
 data "azurerm_public_ip" "workspace" {
   name                = azurerm_public_ip.workspace.name
   resource_group_name = azurerm_resource_group.main.name
-  depends_on          = [azurerm_public_ip.workspace]
+  depends_on          = [azurerm_public_ip.workspace,azurerm_virtual_machine.workspace]
 }
 
 output "sg_id" { value = azurerm_network_security_group.main.id }
