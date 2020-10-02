@@ -25,10 +25,14 @@ ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
 ARM_CLIENT_SECRET="00000000-0000-0000-0000-000000000000"
 ARM_SUBSCRIPTION_ID="00000000-0000-0000-0000-000000000000"
 ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
+# Not needed for public, required for usgovernment, german, china
+#export ARM_ENVIRONMENT=`az account show | jq -r '.environmentName'`
 ```
 ## bash
 ```bash
 # azure
+# Not needed for public, required for usgovernment, german, china
+#export ARM_ENVIRONMENT=`az account show | jq -r '.environmentName'`
 export ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
 export ARM_CLIENT_SECRET="00000000-0000-0000-0000-000000000000"
 export ARM_SUBSCRIPTION_ID="00000000-0000-0000-0000-000000000000"
