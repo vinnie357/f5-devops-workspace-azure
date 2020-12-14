@@ -22,7 +22,7 @@ diskType="Premium_LRS"
 # workspace static internal address
 workspaceIp="10.90.1.99"
 # URL to userdata onboard script
-onboardScript="https://raw.githubusercontent.com/vinnie357/workspace-onboard-bash-templates/master/terrarform/azure/sca/onboard.sh"
+onboardScript="https://raw.githubusercontent.com/vinnie357/bash-onboard-templates/master/terrarform/azure/sca/onboard.sh"
 # comma seperated list of git repositories to clone
 repositories="https://github.com/vinnie357/terraform-azure-bigiq.git,https://github.com/DumpySquare/vscode-f5-fast.git"
 
